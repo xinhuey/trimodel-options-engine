@@ -97,5 +97,22 @@ def black_scholes_greeks(S, K, T, r, sigma, option_type="call"):
     }
 
 if __name__ == "__main__":
-    
+    # Sanity check - try an at-the-money-call
+    S, K, T, r, sigma = 100, 100, 1.0, 0.05, 0.2
+
+    call_price = black_scholes_price(S, K, T, r, sigma, "call")
+    put_price = black_scholes_price(S, K, T, r, sigma, "put")
+    greeks = black_scholes_greeks(S, K, T, r, sigma, "call")
+
+    print(f"Call price: {call_price:.4f}")
+    print(f"Put price: {put_price:.4f}")
+    print("Call Greeks:")
+    for name, calue in greeks.items():
+        print(f" {name.capitalize():6s}: {value:.4f}")
+
+    # Check: put-call parity should hold
+    # C - P = S - K * exp(-r * T)
+    lhs = call_price - put_price
+    rhs = S - K * np.exp(-r * T)
+    print(f"\nPut-call parity check: {lhs:.4f} vs {rhs:.4f} (should match)")
 
