@@ -73,4 +73,29 @@ def black_scholes_greeks(S, K, T, r, sigma, option_type="call"):
         )
 
         rho = K * T * np.exp(-r * T) * norm.cdf(d2)
+    
+    elif option_type == "put":
+        delta = norm.cdf(d1) - 1
+        theta = (
+            -(S * pdf_d1 * sigma) / (2 * np.sqrt(T))
+            + r * K * np.exp(-r * T) * norm.cdf(-d2)
+        )
+        rho = -K * T * np.exp(-r * T) * norm.cdf(-d2)
+    
+    else:
+        raise ValueError("option_type must be 'call' or 'put'")
+
+    gamma = pdf_d1 / (S * sigma * np.sqrt(T))
+    vega = S * pdf_d1 * np.sqrt(T)
+
+    return{
+        "delta": delta,
+        "gamma": gamma,
+        "vega": vega, 
+        "theta": theta,
+        "rho": rho,
+    }
+
+if __name__ == "__main__":
+    
 
