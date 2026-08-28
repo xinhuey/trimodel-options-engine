@@ -107,7 +107,7 @@ if __name__ == "__main__":
     print(f"Call price: {call_price:.4f}")
     print(f"Put price: {put_price:.4f}")
     print("Call Greeks:")
-    for name, calue in greeks.items():
+    for name, value in greeks.items():
         print(f" {name.capitalize():6s}: {value:.4f}")
 
     # Check: put-call parity should hold
