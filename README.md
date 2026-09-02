@@ -22,7 +22,7 @@ As the number of Monte Carlo simulations or binomial tree steps grows, both conv
 - Option price surface and payoff diagram visualizations
 - Built-in sanity checks (e.g. put-call parity) at every stage
 
-## Project structure
+<!-- ## Project structure
 
 ```
 trimodel-options-engine/
@@ -40,7 +40,7 @@ trimodel-options-engine/
 ├── app.py                    # Streamlit dashboard
 ├── requirements.txt
 └── README.md
-```
+``` -->
 
 ## Installation
 
