@@ -79,7 +79,7 @@ if __name__ == "__main__":
         result = monte_carlo_price(S, K, T, r, sigma, "call", n_sims=n, antithetic=True, seed = 42)
 
         print(
-            f"n_sums={n:>9,}"
+            f"n_sims={n:>9,} "
             f"MC call price: {result['price']:.4f}"
             f"95% CI:[{result['ci_lower']:.4f}, {result['ci_upper']:.4f}]"
             f"error vs BS:{abs(result['price'] - bs_call):.4f}"
