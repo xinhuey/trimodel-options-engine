@@ -1,6 +1,6 @@
 # TriModel Options Engine
 
-A Python options pricing engine that prices European options three independent ways — **Black-Scholes** (closed-form), **Monte Carlo simulation**, and a **Binomial Tree**. It then cross-validates the results against each other and computes the Greeks.
+A Python options pricing engine that prices European options three independent ways: **Black-Scholes** (closed-form), **Monte Carlo simulation**, and a **Binomial Tree**. It then cross-validates the results against each other and computes the Greeks.
 
 ## The decision to have three options:
 
