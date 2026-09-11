@@ -1,0 +1,25 @@
+# Python bytecode cache
+__pycache__/
+*.pyc
+*.pyo
+
+# pytest cache
+.pytest_cache/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# VS Code settings (optional -- remove this if you want to share editor config)
+.vscode/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# OS-specific junk
+.DS_Store
+Thumbs.db
+
+# Environment variables / secrets (if you ever add API keys, e.g. for yfinance)
+.env
