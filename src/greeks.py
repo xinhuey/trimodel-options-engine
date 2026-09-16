@@ -72,3 +72,8 @@ def _binomial_wrapper(steps = 500):
         return binomial_tree_price(S, K, T, r, sigma, option_type, steps=steps)
     return wrapped 
 
+def _monte_carlo_wrapper(n_sims = 200_000, seed = 42):
+    def wrapped(S, K, T, r, sigma, option_type):
+        result = monte_carlo_price(S, K, T, r, sigma, option_type, n_sims = n_sims, seed = seed)
+        return result["price"]
+    return wrapped 
