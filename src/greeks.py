@@ -77,3 +77,26 @@ def _monte_carlo_wrapper(n_sims = 200_000, seed = 42):
         result = monte_carlo_price(S, K, T, r, sigma, option_type, n_sims = n_sims, seed = seed)
         return result["price"]
     return wrapped 
+
+if __name__ == "__main__":
+    S, K, T, r, sigma = 100, 100, 1.0, 0.05, 0.2
+
+    analytical = black_scholes_greeks(S, K, T, r, sigma, "call")
+    fd_binomial = finite_diff_greeks(_binomial_wrapper(steps=5000),
+                                     S, K, T, r, sigma, "call",
+                                     eps_S = 2.0)
+    fd_mc = finite_diff_greeks(_monte_carlo_wrapper(n_sims= 200_000, seed = 42), 
+                               S, K, T, r, sigma, "call")
+    print(f"{'Greek':<8} {'Analytical (BS)':>16} {'Finite-Diff (Tree)':>20} {'Finite-Diff (MC)':>18}")
+    print("-" * 66)
+    for greek in ["delta", "gamma", "vega", "theta", "rho"]:
+        print(f"{greek.capitalize():<8} {analytical[greek]:>16.4f} "
+              f"{fd_binomial[greek]:>20.4f} {fd_mc[greek]:>18.4f}")
+ 
+    print("\nNote: the finite-difference Monte Carlo Greeks are visibly noisier")
+    print("than the Tree's -- this is expected. A price estimate that's already")
+    print("statistically noisy gets *more* noisy once you difference two noisy")
+    print("numbers and divide by a small epsilon (that division amplifies noise).")
+    print("This is exactly why Greeks are usually computed analytically or via")
+    print("the Binomial Tree in practice, not via naive Monte Carlo bumping.")
+    
