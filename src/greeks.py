@@ -61,3 +61,14 @@ def finite_diff_greeks(pricer_fn, S, K, T, r, sigma, option_type = "call",
         "theta": theta,
         "rho" : rho
     }
+
+def _binomial_wrapper(steps = 500):
+    """
+    Returns a pricer_fn matching the (S, K, T, r, sigma, option_type)
+    signature that finite_diff_greeks expects, with a 
+    fixed number of steps 
+    """
+    def wrapped(S, K, T, r, sigma, option_type):
+        return binomial_tree_price(S, K, T, r, sigma, option_type, steps=steps)
+    return wrapped 
+
